@@ -17,15 +17,58 @@ const proffys = [
     }
 ]
 
+const subjects = [
+    'Artes',
+    'Biologia',
+    'Ciências',
+    'Educação Física',
+    'Física',
+    'Geografia',
+    'História',
+    'Matemática',
+    'Português',
+    'Química',
+]
+
+const weekDays = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado',
+]
+
+const getSubject  = (subjectNumber)  => {
+    const position = +subjectNumber - 1
+    return subjects[position]
+}
+
+
 const pageLanding = (require, response) => {
     return response.render('index.html',)
 }
 
 const pageStudy = (require, response) => {
-    response.render('study.html', {proffys})
+    const filters = require.query
+    response.render('study.html', {proffys, filters, subjects, weekDays})
 }
 
 const pageGiveClasses = (require, response) => {
+    const data = require.query
+    
+    //Fazer a verificação para saber se os dados existem ou estão vazios    
+    const isNotEmpty = Object.keys(data).length != 0 
+    
+    // Se houver dados e o formulário for enviado com sucesso, redirecionar para a page study
+    if (isNotEmpty) {
+        data.subject = getSubject(data.subject)
+        proffys.push(data)
+        return response.redirect('/study')
+    }    
+
+
     response.render('give-classes.html')
 }
 
