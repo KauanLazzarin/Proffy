@@ -23,7 +23,7 @@
                     <img src="images/icons/back.svg" alt="voltar"></a>
                     <img src="images/logo.svg" alt="">
                 </div>
-
+                                                 
                 <div class="header-content">
                     <strong>Esses são os proffys disponíveis</strong>
                     <form id="search-teachers">
@@ -60,6 +60,13 @@
 
             <main>
 
+
+                {% if proffys == "" %}
+                    <p class="no-results">
+                        Nenhum professor encontrado na sua pesquisa :/
+                    </p>
+                {% else %}
+
                 {% for proffy in proffys %}
                 <article class="teacher-item">
                     <header>
@@ -81,7 +88,8 @@
                         <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato</a>
                     </footer>
                 </article>
-                {%endfor%}
+                {% endfor %}
+                {% endif %}
 
             </main>
 

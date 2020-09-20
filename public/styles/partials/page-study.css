@@ -169,6 +169,12 @@
         margin: 0 auto;
     }
 
+    #page-study main .no-results {
+        max-width: 30rem;
+        margin: 12rem auto;
+        text-align: center;
+    }
+
     #search-teachers {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
